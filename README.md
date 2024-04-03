@@ -196,7 +196,8 @@ a) Create `MerchantConfig` object that contains merchant data settings
 ```kotlin
 val merchantConfig = MerchantConfig(
     apiKey = "653f06d1-208f-447a-90f5-a2e653f28b8d",
-    merchantName = "prod_test"
+    merchantName = "prod_test",
+    sessionToken = "h.b.s"  // in format JWT (below is a specification of creating a signature)
 )
 ```
 
@@ -228,6 +229,49 @@ val paymentData = PaymentData(
   amountConfig = amountConfig,
   transactionConfig = transactionConfig
 )
+```
+
+# Specification of create JWT Token
+
+This option is required in certain cases. Please contact with the administration about the need to use the token. 
+
+`EXAMPLE RSA PRIVATE KEY` :
+
+```EXAMPLE RSA PRIVATE KEY
+-----BEGIN RSA PRIVATE KEY-----
+MIIBOAIBAAJBAOOefHCTXucdN4NPA/fOGsQb608NsKEKNPncwxqu4rfutk4jcORF
+G7KwRtBj/b+mPRXJ5xZgYK582/2o9xxYPWcCARECQELyYNXQ/cuBEFPL8hu1Fu5i
+kICprGuZlxxP/SX3M5+B48vymQjaVefWtZ4oZ6GOip1aky7GjCjnzojVx4Il47kC
+IQD4ooQSHDteYGAsOzeILuBsPCukOIWnnO7zE3dVuzvKpQIhAOpcmbzdI2YK3H3h
+1khresZcNxs+0ULs4CqyjfsNAgYbAiAr4HGo18491MWtc9yfj81ARtqGZFPSSN7f
+mgYAEft+HQIgNyTY4ST5RS+7aOnYEQo7AX8cBmkiLd1h6+3HDeTxatkCIQDVQrAy
+6mGv7R9k07tA7qRnaoHI30t63VY65zgHAcJj2g==
+-----END RSA PRIVATE KEY-----
+```
+
+`EXAMPLE HEADER for JWT` :
+
+```json
+{
+    "alg": "RS256",
+    "typ": "JWT"
+}
+```
+
+`EXAMPLE DATA for JWT` :
+
+```json
+{
+    "merchant_name": "prod_test",
+    "order_id": "123456789TEST",
+    "timestamp": "171213770346961"
+}
+```
+
+If you used the correct settings and data to generate the signature, you will end up with a token like this based on the data above:
+
+```
+eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXJjaGFudF9uYW1lIjoicHJvZF90ZXN0Iiwib3JkZXJfaWQiOiIxMjM0NTY3ODlURVNUIiwidGltZXN0YW1wIjoiMTcxMjEzNzcwMzQ2OTYxIn0.xyJ35F3L7RxQmWYOFymXR05UmNcR036yBxD82qWtBvWQsQo1m2FUtXGnJup3RqEiO3zHKC_s1TJq1JZfehpTaA
 ```
 
 
