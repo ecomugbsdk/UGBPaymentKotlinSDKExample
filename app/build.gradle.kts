@@ -64,7 +64,7 @@ dependencies {
   debugImplementation("androidx.compose.ui:ui-tooling")
   debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-  implementation("com.ukrgasbank.ecom:ugbpaymentkotlinsdk:0.0.1")
+  implementation("com.ukrgasbank.ecom:ugbpaymentkotlinsdk:0.0.2")
 
   implementation("androidx.appcompat:appcompat:1.6.1")
   implementation("io.ktor:ktor-client-core:2.1.0")
