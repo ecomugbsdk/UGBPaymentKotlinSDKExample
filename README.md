@@ -11,7 +11,7 @@ Init the UGBPaymentKotlinSDKSource library.
 First nead use implementation
 
 ```kotlin
-implementation("com.ukrgasbank.ecom:ugbpaymentkotlinsdk:0.0.1")
+implementation("com.ukrgasbank.ecom:ugbpaymentkotlinsdk:0.0.3")
 ```
 
 You also need to add the necessary dependencies
@@ -287,6 +287,18 @@ UGBPaymentSDK.paymentLauncherShow(
 }
 ```
 
+If you nead forward to previous screen you nead use null values to Error/Success activity, example: 
+
+```kotlin
+UGBPaymentSDK.paymentLauncherShow(
+      this,
+      null,
+      null,
+      Environment.DEVELOPMENT,
+      paymentData) { resultData: ResultData -> 
+}
+```
+
 
 <br>
 
@@ -358,3 +370,13 @@ UGBPaymentSDK.paymentLauncherShow(
 |transactionReference |	Reference your transaction|
 |||
 
+
+
+
+# Versions
+
+`Update history` :
+| Date    | Version | Description |
+| ----------- | ----------- | ----------- |
+| 05.04.2024 | 0.0.3 | Minor fixing bug |
+||||
