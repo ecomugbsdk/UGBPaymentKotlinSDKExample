@@ -2,7 +2,7 @@
 
 
 # Requirements
-API 28+
+API 23+
 
 
 # SDK configuration
@@ -11,7 +11,7 @@ Init the UGBPaymentKotlinSDKSource library.
 First nead use implementation
 
 ```kotlin
-implementation("com.ukrgasbank.ecom:ugbpaymentkotlinsdk:0.0.3")
+implementation("com.ukrgasbank.ecom:ugbpaymentkotlinsdk:0.0.4")
 ```
 
 You also need to add the necessary dependencies
