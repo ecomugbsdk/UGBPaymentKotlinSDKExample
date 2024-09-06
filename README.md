@@ -11,7 +11,7 @@ Init the UGBPaymentKotlinSDKSource library.
 First nead use implementation
 
 ```kotlin
-implementation("com.ukrgasbank.ecom:ugbpaymentkotlinsdk:0.0.5")
+implementation("com.ukrgasbank.ecom:ugbpaymentkotlinsdk:0.1.0")
 ```
 
 You also need to add the necessary dependencies
@@ -25,8 +25,8 @@ implementation("io.ktor:ktor-client-logging-jvm:2.1.0")
 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
 implementation("com.google.code.gson:gson:2.8.8")
 implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
-implementation ("com.google.android.gms:play-services-wallet:19.3.0")
-implementation ("com.google.android.gms:play-services-base:18.0.1")
+implementation ("com.google.android.gms:play-services-wallet:19.4.0")
+implementation ("com.google.android.gms:play-services-base:18.5.0")
 implementation ("com.google.android.gms:play-services-pay:16.5.0")
 ```
 
@@ -51,6 +51,7 @@ import com.ukrgasbank.ecom.PaymentAction
 import com.ukrgasbank.ecom.PaymentData
 import com.ukrgasbank.ecom.ResultData
 import com.ukrgasbank.ecom.Environment
+import com.ukrgasbank.ecom.GooglePayConfig
 ```
 
 
@@ -229,7 +230,23 @@ d) Create `PaymentData` object that contains all settings for you payment
 val paymentData = PaymentData(
   merchantConfig = merchantConfig,
   amountConfig = amountConfig,
-  transactionConfig = transactionConfig
+  transactionConfig = transactionConfig,
+  googlePayConfig = GooglePayConfig(...), // null by default
+)
+```
+
+e) If you need use GooglePay in your project nead initialize config
+
+```kotlin
+val paymentData = PaymentData(
+  merchantConfig = merchantConfig,
+  amountConfig = amountConfig,
+  transactionConfig = transactionConfig,
+  googlePayConfig = GooglePayConfig(
+    merchantName = "Ukrgasbank",
+    merchantId = "BCR2DN6TQ8Y730K1",
+    environment = Environment.DEVELOPMENT  // Environment.PRODUCTION
+  )
 )
 ```
 
