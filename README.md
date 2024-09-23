@@ -11,7 +11,7 @@ Init the UGBPaymentKotlinSDKSource library.
 First nead use implementation
 
 ```kotlin
-implementation("com.ukrgasbank.ecom:ugbpaymentkotlinsdk:0.1.0")
+implementation("com.ukrgasbank.ecom:ugbpaymentkotlinsdk:0.2.0")
 ```
 
 You also need to add the necessary dependencies
@@ -193,7 +193,7 @@ The texts table:
 ```
 
 
-#  Prepare payment data for sending:
+#  Prepare payment data for sending(paymentLauncherShow):
 a) Create `MerchantConfig` object that contains merchant data settings
 
 ```kotlin
@@ -249,6 +249,44 @@ val paymentData = PaymentData(
   )
 )
 ```
+
+#  Prepare payment data for sending(paymentLauncherShow):
+a) Create json data to sending, it will contain payment information
+
+```kotlin
+var paymentDataString : String = "{\n" +
+      "  \"paymentData\": {\n" +
+      "    \"paymentToken\": \"eyJhbGciOiJSUzI1kpXVCJ9.ekYXRhIjoie1wib3JkZXJJZFwiOlwiRE9ONzUxMTc5NDYwNDgyNDZcIixcImFtb3VudFwiOjEwMCxcImZlZVwiOjAsXCJ1c2VySWRcIjpcIjU3NGZkMGNlYzEyYTA4NjVjNDJmOWUzOGNmMTllZDlmMmE3YTAwZWRmZjBmOGJkZjQ1N2M1NTU1ZWEwYTA2ZWIwMzNjOWQ4Njc1MWQxNDk3ZDU2ZTg2NTgwM2M4MTU3YjY4NjhiOTY3ZDIzZDQwZDM3YjZhZGZiMmVmY2M5MTgzXCIsXCJkZXNjcmlwdGlvblwiOlwi0JHQu9Cw0LPQvtC00ZbQudC90LAg0LTQvtC_0L7QvNC-0LPQsCDQstGW0LnRgdGM0LrQvtCy0L7RgdC70YPQttCx0L7QstGG0Y_QvFwiLFwiXCI6XCIyMDI0LTA5LTE3VDEzOjQzOjI3LjY0M1pcIixcInVuaXhUaW1lU3RhbXBcIjoxNzI2NTgwNjA4LFwiY3VycmVuY3lcIjpcIlVBSFwiLFwicmVjaXBpZW50c1wiOlt7XCJvcmRlcl9yZWNpcGllbnRfaWRcIjpcIkRPTjc1MTE3OTQ2MDQ4MjQ2XzBcIixcIm1lcmNoYW50X25hbWVcIjpcInUyNF9kZWZlbmNlXCIsXCJiaWxsX3R5cGVcIjpcInUyNF9kZWZlbmNlXCIsXCJhbW91bnRcIjoxMDB9XX0iLCJpYXQiOjE3MjY1ODA2MDcsImV4cCI6MTcyNjU4NzgwN30.CTGhS9BaWQVaQ5nwxIoMzqnRYdoAvVLTPU0EZFI5kIOElRdF7o6m6yCCuTYL2qWNBBFteZBSuhRA77Rcf-9aOYH3QqVpGYRIptqC79vrfmivoG1OxSfFsTDrUoEsizxyCuF4QfpqCm4zFQ0DoXhY7jTpwZZP3CNTt7jGIkn-BMqz7nXOaIT6WWwG73cg6fe-u-Gli2IlfLwaJ-Iw0UXqWNuipHRyaHJMaMe0CbpWy5SyNHctAxCWXJr0BHXFxJLBssnI-Y2Ot2QA-YAXSJxpqhoLJq1xpuQ_XNcFp7wrG-nHiW6N8KJqC-p2S3lMs54puDTTU0rt4g\",\n" +
+      "    \"orderId\": \"TEST123456789\",\n" +
+      "    \"amount\": 100.00,\n" +
+      "    \"merchantId\": \"test_merchant\",\n" +
+      "    \"fee\": 0,\n" +
+      "    \"userId\": \"574fd0cec12a0865c42f9e38cf19ed9f2a7a00edff0f8bdf457c5555ea0a06eb033c9d86751d1497d56e865803c8157b6868b967d23d40d37b6adfb2efcc9183\",\n" +
+      "    \"description\": \"Test Payment\",\n" +
+      "    \"initializationDate\": \"2024-09-13T13:43:27.643Z\",\n" +
+      "    \"unixTimeStamp\": 1726580608,\n" +
+      "    \"currency\": \"UAH\",\n" +
+      "    \"recipients\": [\n" +
+      "      {\n" +
+      "        \"order_recipient_id\": \"TEST123456789_0\",\n" +
+      "        \"merchant_name\": \"test_merchant\",\n" +
+      "        \"bill_type\": \"test_merchant\",\n" +
+      "        \"amount\": 100\n" +
+      "      }\n" +
+      "    ]\n" +
+      "  }\n" +
+      "}"
+```
+
+b) After you need use this data with apiKey and send request
+
+```kotlin
+UGBPaymentSDK.paymentInit(this, paymentDataString, "0b2a1987-934c-437c-a080-9fb65d7f1ecd") {
+      resultData : ResultData ->
+    }
+```
+
+About `resultData` and function callback [information](#handling-payment-status).
 
 # Specification of create JWT Token
 
@@ -398,4 +436,6 @@ UGBPaymentSDK.paymentLauncherShow(
 | Date    | Version | Description |
 | ----------- | ----------- | ----------- |
 | 05.04.2024 | 0.0.3 | Minor fixing bug |
+| 12.09.2024 | 0.1.0 | Add suuport GPAY |
+| 23.09.2024 | 0.2.0 | Add support function init - paymentInit |
 ||||
