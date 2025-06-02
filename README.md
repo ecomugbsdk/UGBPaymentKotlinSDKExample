@@ -11,7 +11,7 @@ Init the UGBPaymentKotlinSDKSource library.
 First nead use implementation
 
 ```kotlin
-implementation("com.ukrgasbank.ecom:ugbpaymentkotlinsdk:0.4.0")
+implementation("com.ukrgasbank.ecom:ugbpaymentkotlinsdk:1.2.0")
 ```
 
 You also need to add the necessary dependencies
@@ -156,7 +156,10 @@ The texts table:
   <string name="button_pay_disabled_text_string">Сплатити</string>
 
   <!-- Texts for InfoText -->
-  <string name="info_text_string">Транзакція обробляється ПАТ «УКРГАЗБАНК». Натискаючи «Сплатити», ви погоджуєтесь з умовами Публічної оферти. Виникли питання?</string>
+  <string name="info_text_string">Транзакція обробляється АБ «УКРГАЗБАНК». Підтверджуючи платіж, ви погоджуєтесь з умовами Публічної оферти.</string>
+  <string name="info_text_link_string">Публічної оферти</string>
+  <string name="info_text_link_url_string">https://www.ukrgasbank.com/upload/file/oferta_perekaz.pdf</string>
+
 
   <!-- Texts for PaymentSummary -->
   <string name="sum_label_text_string">Сума до сплати:</string>
@@ -427,16 +430,3 @@ UGBPaymentSDK.paymentLauncherShow(
 |transactionReference |	Reference your transaction|
 |||
 
-
-
-
-# Versions
-
-`Update history` :
-| Date    | Version | Description |
-| ----------- | ----------- | ----------- |
-| 05.04.2024 | 0.0.3 | Minor fixing bug |
-| 12.09.2024 | 0.1.0 | Add suuport GPAY |
-| 23.09.2024 | 0.2.0 | Add support function init - paymentInit |
-| 27.09.2024 | 0.2.1 | Minor fixing bug |
-||||
